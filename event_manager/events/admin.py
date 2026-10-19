@@ -1,3 +1,13 @@
 from django.contrib import admin
+from .models import Category, Event 
 
-# Register your models here.
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    """Baut auf Basis eines Models Formulare."""
+    pass
+
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    pass
