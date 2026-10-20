@@ -12,3 +12,5 @@
 
 ## Docs Dienstag
 - https://djangoheroes.org/extend_project/admin_app.html
+- https://djangoheroes.org/working_with_forms/setup_templates.html
+- https://djangoheroes.org/working_with_forms/create_views.html

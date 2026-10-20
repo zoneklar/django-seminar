@@ -10,6 +10,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "django-extensions>=4.1",
     "ruff>=0.17.1",
 ]
 
