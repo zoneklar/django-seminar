@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+<h1>Übersicht Kategorien</h1>
+{% endblock %}
+
+
+{% block content %}
+<ul>
+{% for category in categories %}
+    <li><a href="{% url 'events:category-detail' category.pk %}">{{category}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

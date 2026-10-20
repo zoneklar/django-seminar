@@ -1,10 +1,14 @@
 # Projekt Eventmanager
 
-## Docs
-- djangoheroes.org
-
 ## Pausezeiten
-- Biopausen on demand
 - 12:30 - 13:30
 
-Pause bis 10:55
+## Docs
+- djangoheroes.org
+- https://docs.djangoproject.com/
+- https://www.it-schulungen.com/wir-ueber-uns/wissensblog/was-ist-object-relational-mapping-orm.html
+- https://opensource.com/article/17/11/django-orm
+
+
+## Docs Dienstag
+- https://djangoheroes.org/extend_project/admin_app.html

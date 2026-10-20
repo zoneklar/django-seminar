@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class Category(models.Model):
@@ -11,14 +15,23 @@ class Category(models.Model):
     sub_title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def __str__(self) -> str:
         return self.name
 
 
-
-
 class Event(models.Model):
     """Der Event, der auf einen bestimmten Zeitpunkt terminiert ist."""
+
+    class Group(models.IntegerChoices):
+        SMALL = 2, "kleine Gruppe"
+        MEDIUM = 5, "mittelgroße Gruppe"
+        BIG = 10, "große Gruppe"
+        LARGE = 20, "sehr große Gruppe"
+        UNLIMITED = 0, "ohne Begrenzung"
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -27,11 +40,20 @@ class Event(models.Model):
     date = models.DateTimeField()
     sub_title = models.CharField(max_length=200, null=True, blank=True)
     category = models.ForeignKey(
-        Category, 
-        on_delete=models.CASCADE, 
+        Category,
+        on_delete=models.CASCADE,
         related_name="events",  # z.B. sport.events.all()
     )
     is_active = models.BooleanField(default=True)
+    min_group = models.PositiveIntegerField(
+        choices=Group.choices,
+        default=Group.UNLIMITED,
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="events",  # bob.events.all()
+    )
 
     class Meta:
         ordering = ["name"]
