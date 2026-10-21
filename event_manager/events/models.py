@@ -1,6 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.db import models
 
 User = get_user_model()
 
@@ -58,6 +57,17 @@ class Event(models.Model):
     class Meta:
         ordering = ["name"]
         verbose_name_plural = "Events"
+
+    def related_events(self):
+        """
+        Ähnliche Events aus der gleichen Kategorie und der selben
+        min-group.
+        """
+        related_events = Event.objects.filter(
+            min_group=self.min_group,
+            category=self.category,
+        )
+        return related_events.exclude(pk=self.id)
 
     def __str__(self) -> str:
         return self.name

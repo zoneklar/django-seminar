@@ -26,13 +26,17 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",  # < im dev-betrieb standard static auschalten
     "django.contrib.staticfiles",
     "django_extensions",
     "events",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # <<<<< HIER
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -40,6 +44,29 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# Dateien werden im Browser gecached und komprimiert (gzip)
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# Formulare (Crispy forms unterstützt div. Templatepacks, u.a. bootstrap 2 - 5)
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+if DEBUG:
+    MIDDLEWARE.extend(["debug_toolbar.middleware.DebugToolbarMiddleware"])
+
+    # Apps, die nur lokal genutzt werden
+    INSTALLED_APPS.extend(["debug_toolbar"])
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "INTERCEPT_REDIRECTS": False,
+    }
+
+    INTERNAL_IPS = ("127.0.0.1",)
+
 
 ROOT_URLCONF = "event_manager.urls"
 
@@ -106,7 +133,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+# der URL-Pfad, unter dem statischen Dateien in der URL stehen
+STATIC_URL = "static/"  # {% static %}
+# hier sucht Django nach statischen Dateien (css, images, js):
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# manage.py collectstatic sammelt alle Dateien in diesem Verzeichnis.
+# dieses Verzeichnis wird in .gitignore notiert
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

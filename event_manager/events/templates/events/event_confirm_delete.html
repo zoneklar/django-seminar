@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1 class="display-6 fw-bold">Event löschen</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-left">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger-subtle text-danger-emphasis fw-semibold">
+                    Löschbestätigung
+                </div>
+
+                <div class="card-body">
+                    <p class="mb-0">
+                        Möchtest du das Event
+                        <strong>„{{ object }}“</strong>
+                        wirklich löschen?
+                    </p>
+                </div>
+                <div class="card-footer bg-white">
+                    <form method="post" class="d-grid gap-2 d-sm-flex justify-content-sm-end">
+                        {% csrf_token %}
+
+                        <a href="{% url 'events:event-detail' object.pk %}"
+                           class="btn btn-outline-secondary">
+                            Abbrechen
+                        </a>
+
+                        <button type="submit" class="btn btn-danger">
+                            Ja, Event löschen
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
