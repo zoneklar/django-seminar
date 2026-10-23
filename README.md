@@ -19,3 +19,4 @@
 - https://docs.djangoproject.com/en/6.1/intro/tutorial01/
 - https://de.wikipedia.org/wiki/CRUD
 - https://mermaid.live
+- https://www.codewars.com/
