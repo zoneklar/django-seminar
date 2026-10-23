@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "events",
+    "pages",
     "crispy_forms",
     "crispy_bootstrap5",
 ]
@@ -74,7 +75,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "event_manager" / "templates"],
-        "APP_DIRS": True,
+        "APP_DIRS": True,  # sucht in den apps, zb. events nach templates-Verzeichnis
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",

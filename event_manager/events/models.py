@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 User = get_user_model()
@@ -34,7 +35,7 @@ class Event(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, validators=[MinLengthValidator(3)])
     description = models.TextField(null=True, blank=True)
     date = models.DateTimeField()
     sub_title = models.CharField(max_length=200, null=True, blank=True)

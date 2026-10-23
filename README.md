@@ -14,3 +14,8 @@
 - https://djangoheroes.org/extend_project/admin_app.html
 - https://djangoheroes.org/working_with_forms/setup_templates.html
 - https://djangoheroes.org/working_with_forms/create_views.html
+
+## Docs Donnerstag
+- https://docs.djangoproject.com/en/6.1/intro/tutorial01/
+- https://de.wikipedia.org/wiki/CRUD
+- https://mermaid.live

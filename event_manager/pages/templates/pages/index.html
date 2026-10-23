@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block head %}
+<h1>Event Manager Startseite</h1>
+{% endblock %}
+
+
+{% block content %}
+<ul class="list-group event_box">
+{% for event in events %}
+    <a href="{% url 'events:event-detail' event.pk %}">
+        <li class="list-group-item rounded">
+        <small><span>am {{event.date}}</span></small><br>
+        <b>{{event.name}}</b>
+            <span class="badge rounded-pill bg-primary">{{event.category.name}}</span>
+            <span>by {{event.author}}</span>
+        </li>
+    </a>
+{% endfor%}
+</ul>
+
+<h2>Kategorien</h2>
+<ul>
+    {% for category in categories %}
+        <li>
+            {{category}}
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

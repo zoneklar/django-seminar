@@ -6,6 +6,7 @@
 
 
 {% block content %}
+
 <ul>
 {% for category in categories %}
     <li><a href="{% url 'events:category-detail' category.pk %}">{{category}}</a></li>

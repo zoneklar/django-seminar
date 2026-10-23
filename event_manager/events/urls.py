@@ -13,11 +13,12 @@ from .views import (
     hello_world,
 )
 
-app_name = "events"
+app_name = "events"  # app_name ist eine von Django festgesetzter Variable
+
 # Eine Url wird im Template aufgelöst: {% url 'app_name:path_name' %}
-# Beispiel Liste der kategorien: {% url 'events:category-list' %}
+# Beispiel Liste der kategorien: {% url 'events:category-list' %} => events/categories
 # url(app_name, path_name)
-# Beispiel Detail der kategorie: {% url 'events:category-detail' category.pk %}
+# Beispiel Detail der kategorie: {% url 'events:category-detail' category.pk %} => events/categories/3
 
 urlpatterns = [
     # Event-Routen
